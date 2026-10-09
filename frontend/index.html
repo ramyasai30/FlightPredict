@@ -1,0 +1,304 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#f5f8fc">
+    <title>FlightPredict | Flight Delay Prediction</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <header class="navbar">
+        <a href="#" class="brand">
+            <span class="brand-icon">✈</span>
+            <span>Flight<span class="brand-accent">Predict</span></span>
+        </a>
+
+        <div class="nav-right">
+            <span class="status-dot"></span>
+            <span class="nav-label">AI Flight Intelligence</span>
+        </div>
+    </header>
+
+    <main class="page-container">
+
+        <section class="hero">
+            <div class="hero-copy">
+                <span class="eyebrow">
+                    <span class="eyebrow-line"></span>
+                    SMARTER FLIGHT PLANNING
+                </span>
+
+                <h1>Know before<br>you <span class="hero-highlight">take off.</span></h1>
+
+                <p>
+                    Predict potential flight delays using machine learning.
+                    Enter your flight details to get an estimated delay probability.
+                </p>
+
+                <div class="hero-points">
+                    <span>✦ Data-driven insights</span>
+                    <span>✦ Instant prediction</span>
+                </div>
+            </div>
+
+            <div class="flight-visual" aria-label="Animated airplane illustration">
+                <div class="visual-orbit orbit-one"></div>
+                <div class="visual-orbit orbit-two"></div>
+
+                <div class="visual-label label-top">
+                    <span class="mini-dot"></span>
+                    FLIGHT STATUS
+                </div>
+
+                <div class="plane-path"></div>
+                <div class="plane">
+                    <span>✈</span>
+                </div>
+
+                <div class="visual-airport airport-left">
+                    <span class="airport-dot"></span>
+                    <span>ORIGIN</span>
+                </div>
+
+                <div class="visual-airport airport-right">
+                    <span class="airport-dot"></span>
+                    <span>DESTINATION</span>
+                </div>
+
+                <div class="visual-coordinate">AVIATION · PREDICTION · AI</div>
+            </div>
+        </section>
+
+        <section class="form-card">
+            <div class="section-heading">
+                <div>
+                    <span class="section-kicker">PREDICTION TOOL</span>
+                    <h2>Flight details</h2>
+                    <p>Enter the scheduled details of your flight.</p>
+                </div>
+
+                <div class="step-badge">
+                    <span class="step-number">01</span>
+                    <span>Flight information</span>
+                </div>
+            </div>
+
+            <form id="flightForm">
+
+                <div class="form-section-title">
+                    <span class="section-icon">✈</span>
+                    <h3>Route information</h3>
+                </div>
+
+                <div class="form-grid">
+
+                    <div class="field">
+                        <label for="airline">Airline</label>
+                        <input id="airline" name="airline" type="text"
+                            placeholder="e.g. AA" required maxlength="30">
+                        <small>Use the airline code expected by the model.</small>
+                    </div>
+
+                    <div class="field">
+                        <label for="origin">Origin airport</label>
+                        <input id="origin" name="origin" type="text"
+                            placeholder="e.g. JFK" required maxlength="30">
+                    </div>
+
+                    <div class="field">
+                        <label for="destination">Destination airport</label>
+                        <input id="destination" name="destination" type="text"
+                            placeholder="e.g. LAX" required maxlength="30">
+                    </div>
+
+                    <div class="field">
+                        <label for="distance">Distance (miles)</label>
+                        <input id="distance" name="distance" type="number"
+                            placeholder="e.g. 760" min="1" step="any" required>
+                    </div>
+
+                    <div class="field full-width">
+                        <label for="route">Route</label>
+                        <div class="route-input-wrap">
+                            <span class="route-icon">↗</span>
+                            
+<input id="route" name="route" type="text"
+    placeholder="e.g. JFK_TO_LAX" required maxlength="100" readonly>
+
+                        </div>
+                        <small>Use the same route format as the trained model.</small>
+                    </div>
+
+                </div>
+
+                <div class="form-divider"></div>
+
+                <div class="form-section-title">
+                    <span class="section-icon">◷</span>
+                    <h3>Schedule information</h3>
+                </div>
+
+                <div class="form-grid">
+
+                    <div class="field">
+                        <label for="month">Month</label>
+                        <select id="month" name="month" required>
+                            <option value="">Select month</option>
+                            <option value="1">January</option>
+                            <option value="2">February</option>
+                            <option value="3">March</option>
+                            <option value="4">April</option>
+                            <option value="5">May</option>
+                            <option value="6">June</option>
+                            <option value="7">July</option>
+                            <option value="8">August</option>
+                            <option value="9">September</option>
+                            <option value="10">October</option>
+                            <option value="11">November</option>
+                            <option value="12">December</option>
+                        </select>
+                    </div>
+
+                    <div class="field">
+                        <label for="day">Day of month</label>
+                        <input id="day" name="day" type="number"
+                            placeholder="1–31" min="1" max="31" required>
+                    </div>
+
+                    <div class="field">
+                        <label for="dayOfWeek">Day of week</label>
+                        <select id="dayOfWeek" name="dayOfWeek" required>
+                            <option value="">Select day</option>
+                            <option value="1">Monday</option>
+                            <option value="2">Tuesday</option>
+                            <option value="3">Wednesday</option>
+                            <option value="4">Thursday</option>
+                            <option value="5">Friday</option>
+                            <option value="6">Saturday</option>
+                            <option value="7">Sunday</option>
+                        </select>
+                        <small>Uses the dataset convention: Monday = 1.</small>
+                    </div>
+
+                    <div class="field">
+                        <label for="weekend">Weekend</label>
+                        <select id="weekend" name="weekend" required>
+                            <option value="">Select option</option>
+                            <option value="0">No</option>
+                            <option value="1">Yes</option>
+                        </select>
+                    </div>
+
+                </div>
+
+                <div class="form-divider"></div>
+
+                <div class="form-section-title">
+                    <span class="section-icon">◷</span>
+                    <h3>Departure & arrival times</h3>
+                </div>
+
+                <div class="time-grid">
+
+                    <div class="time-card">
+                        <div class="time-card-heading">
+                            <span class="time-marker departure-marker"></span>
+                            <span>Scheduled departure</span>
+                        </div>
+
+                        <div class="time-inputs">
+                            <div class="field">
+                                <label for="depHour">Hour (0–23)</label>
+                                <input id="depHour" name="depHour" type="number"
+                                    placeholder="17" min="0" max="23" required>
+                            </div>
+
+                            <div class="field">
+                                <label for="depMinute">Minute</label>
+                                <input id="depMinute" name="depMinute" type="number"
+                                    placeholder="30" min="0" max="59" required>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="time-card">
+                        <div class="time-card-heading">
+                            <span class="time-marker arrival-marker"></span>
+                            <span>Scheduled arrival</span>
+                        </div>
+
+                        <div class="time-inputs">
+                            <div class="field">
+                                <label for="arrHour">Hour (0–23)</label>
+                                <input id="arrHour" name="arrHour" type="number"
+                                    placeholder="20" min="0" max="23" required>
+                            </div>
+
+                            <div class="field">
+                                <label for="arrMinute">Minute</label>
+                                <input id="arrMinute" name="arrMinute" type="number"
+                                    placeholder="15" min="0" max="59" required>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="form-footer">
+                    <p><span class="required-star">*</span> All fields are required.</p>
+
+                    <button type="submit" id="predictButton">
+                        <span>Predict flight delay</span>
+                        <span class="button-arrow">→</span>
+                    </button>
+                </div>
+
+            </form>
+        </section>
+
+        <section class="result-card" id="resultCard" aria-live="polite" hidden>
+            <div class="result-topline">
+                <span class="section-kicker">PREDICTION RESULT</span>
+                <span class="result-badge" id="resultBadge">RESULT</span>
+            </div>
+
+            <h2 id="predictionText">Prediction pending</h2>
+            <p id="resultDescription">
+                Your model prediction will appear here.
+            </p>
+
+            <div class="probability-section">
+                <div class="probability-label">
+                    <span>Delay probability</span>
+                    <strong id="probabilityText">--.--%</strong>
+                </div>
+
+                <div class="probability-track">
+                    <div class="probability-fill" id="probabilityFill"></div>
+                </div>
+            </div>
+
+            <p class="result-note">
+                This is a model estimate, not a guarantee of the actual flight outcome.
+            </p>
+        </section>
+
+        <footer class="page-footer">
+            <a href="#" class="footer-brand">✈ FlightPredict</a>
+            <p>Machine learning for smarter flight planning.</p>
+            <span>Academic project · AI Flight Delay Prediction</span>
+        </footer>
+
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
