@@ -1,4 +1,5 @@
 
+import json
 from pathlib import Path
 
 import joblib
@@ -23,6 +24,14 @@ if not MODEL_PATH.exists():
     )
 
 model = joblib.load(MODEL_PATH)
+
+THRESHOLD_PATH = PROJECT_ROOT / "models" / "decision_threshold.json"
+
+if not THRESHOLD_PATH.exists():
+    raise FileNotFoundError(f"Threshold file not found: {THRESHOLD_PATH}")
+
+with THRESHOLD_PATH.open("r", encoding="utf-8") as file:
+    THRESHOLD = float(json.load(file)["threshold"])
 
 FEATURES = [
     "MONTH",
@@ -75,8 +84,6 @@ def predict():
             columns=FEATURES
         )
 
-        prediction = int(model.predict(flight_data)[0])
-
         if not hasattr(model, "predict_proba"):
             return jsonify({
                 "error": "The model does not support probability predictions."
@@ -95,6 +102,8 @@ def predict():
             model.predict_proba(flight_data)[0][delayed_index]
         )
 
+        prediction = 1 if probability >= THRESHOLD else 0
+
         return jsonify({
             "prediction": (
                 "DELAYED" if prediction == 1
@@ -102,7 +111,8 @@ def predict():
             ),
             "delay_probability": round(
                 probability * 100, 2
-            )
+            ),
+            "threshold": THRESHOLD
         })
 
     except (TypeError, ValueError) as error:

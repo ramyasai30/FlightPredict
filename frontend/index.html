@@ -29,6 +29,7 @@
 
     <main class="page-container">
 
+
         <section class="hero">
             <div class="hero-copy">
                 <span class="eyebrow">
@@ -102,22 +103,49 @@
 
                     <div class="field">
                         <label for="airline">Airline</label>
-                        <input id="airline" name="airline" type="text"
-                            placeholder="e.g. AA" required maxlength="30">
-                        <small>Use the airline code expected by the model.</small>
+<select id="airline" name="airline" required>
+    <option value="">Select airline</option>
+    <option value="AA">American Airlines (AA)</option>
+    <option value="AS">Alaska Airlines (AS)</option>
+    <option value="B6">JetBlue Airways (B6)</option>
+    <option value="DL">Delta Air Lines (DL)</option>
+    <option value="EV">Atlantic Southeast Airlines (EV)</option>
+    <option value="F9">Frontier Airlines (F9)</option>
+    <option value="HA">Hawaiian Airlines (HA)</option>
+    <option value="MQ">American Eagle Airlines (MQ)</option>
+    <option value="NK">Spirit Airlines (NK)</option>
+    <option value="OO">SkyWest Airlines (OO)</option>
+    <option value="UA">United Airlines (UA)</option>
+    <option value="US">US Airways (US)</option>
+    <option value="VX">Virgin America (VX)</option>
+    <option value="WN">Southwest Airlines (WN)</option>
+</select>
+<small>Select the airline operating your flight.</small>
                     </div>
 
                     <div class="field">
-                        <label for="origin">Origin airport</label>
-                        <input id="origin" name="origin" type="text"
-                            placeholder="e.g. JFK" required maxlength="30">
-                    </div>
+    <label for="origin">Origin airport</label>
+    <select id="origin" name="origin" required>
+        <option value="">Select origin airport</option>
+        <option value="ATL">Atlanta (ATL)</option>
+        <option value="JFK">New York — JFK</option>
+        <option value="LAX">Los Angeles (LAX)</option>
+        <option value="ORD">Chicago (ORD)</option>
+        <option value="SFO">San Francisco (SFO)</option>
+    </select>
+</div>
 
                     <div class="field">
-                        <label for="destination">Destination airport</label>
-                        <input id="destination" name="destination" type="text"
-                            placeholder="e.g. LAX" required maxlength="30">
-                    </div>
+    <label for="destination">Destination airport</label>
+    <select id="destination" name="destination" required>
+        <option value="">Select destination airport</option>
+        <option value="ATL">Atlanta (ATL)</option>
+        <option value="JFK">New York — JFK</option>
+        <option value="LAX">Los Angeles (LAX)</option>
+        <option value="ORD">Chicago (ORD)</option>
+        <option value="SFO">San Francisco (SFO)</option>
+    </select>
+</div>
 
                     <div class="field">
                         <label for="distance">Distance (miles)</label>
@@ -299,6 +327,7 @@
 
     </main>
 
+    <script src="airport-data.js"></script>
     <script src="script.js"></script>
 </body>
 </html>
